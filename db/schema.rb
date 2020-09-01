@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_08_27_183442) do
 
   create_table "alerts", force: :cascade do |t|
     t.string "titulo"
-    t.string "secuencia", default: "---\n- - red\n  - white\n  - blue\n  - green\n- - green\n  - red\n  - white\n  - blue\n- - blue\n  - green\n  - red\n  - white\n- - white\n  - blue\n  - green\n  - red\n"
+    t.string "secuencia" #, default: "---\n- - red\n  - white\n  - blue\n  - green\n- - green\n  - red\n  - white\n  - blue\n- - blue\n  - green\n  - red\n  - white\n- - white\n  - blue\n  - green\n  - red\n"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
