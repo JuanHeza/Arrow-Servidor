@@ -1,10 +1,11 @@
 class AlertsController < ApplicationController
-  @@actual = "Stand"
+  @@actual = 1
   @@alertstatus = false
 
   def home
-    print "actual:" + @@actual + "\n"
-    @titulo = @@actual
+    # print "actual:" + @@actual + "\n"
+    @data = Alert.all
+    @titulo = Alert.find(@@actual).titulo
     if @@alertstatus
       @status = "Encendido"
     else
@@ -32,14 +33,18 @@ class AlertsController < ApplicationController
   end
 
   def serieStatus
-    @nombre = 'green'
-    @serie = [
-      ['red','white','blue','green'],
-      ['green','red','white','blue'],
-      ['blue','green','red','white'],
-      ['white','blue','green','red']
-    ]
-    render json: { titulo: 'test', serie: @serie}.to_json, status: :ok
+    data = Alert.all
+    actual = Alert.find(@@actual)
+    # pp data
+    # @nombre = "green"
+    # @serie = [
+    #   ["red", "white", "blue", "green"],
+    #   ["green", "red", "white", "blue"],
+    #   ["blue", "green", "red", "white"],
+    #   ["white", "blue", "green", "red"],
+    # ]
+    render json: actual.to_json, status: :ok
+    # render json: { titulo: "test", serie: @serie }.to_json, status: :ok
     # redirect_to home_path
   end
 end

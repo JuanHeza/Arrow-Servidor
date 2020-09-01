@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_08_27_183442) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "alerts", force: :cascade do |t|
     t.string "titulo"
     t.string "secuencia", default: "---\n- - red\n  - white\n  - blue\n  - green\n- - green\n  - red\n  - white\n  - blue\n- - blue\n  - green\n  - red\n  - white\n- - white\n  - blue\n  - green\n  - red\n"
@@ -26,11 +29,11 @@ ActiveRecord::Schema.define(version: 2020_08_27_183442) do
     t.string "fecha"
     t.string "hora"
     t.string "repeticion"
-    t.integer "alerta_id", null: false
+    t.integer "alert_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["alerta_id"], name: "index_events_on_alerta_id"
+    t.index ["alert_id"], name: "index_events_on_alerta_id"
   end
 
-  add_foreign_key "events", "alerta", column: "alerta_id"
+  add_foreign_key "events", "alerts"
 end

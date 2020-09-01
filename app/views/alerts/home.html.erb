@@ -27,11 +27,13 @@
     <h2>Secuencia:  </h2><h3><%= @titulo %></h3>
     <h2>Alerta:     </h2><h3><%= @status %></h3>
         <a class="my_button" value="" href=<%= alert_path %>>Alert</a>
-        <a class="my_button" value="" href=<%= serie_path("green") %>>Green</a>
-        <a class="my_button" value="" href=<%= serie_path("red") %>>Red</a>
-        <a class="my_button" value="" href=<%= serie_path("blue") %>>Blue</a>
-        <a class="my_button" value="" href=<%= serie_path("friends") %>>Friends</a>
-        <a class="my_button" value="" href=<%= serie_path("rainbow") %>>Rainbow</a>
+    <% @data.each do |dat| %>
+        <a class="my_button" value="" href=<%= serie_path(dat.id) %>><%= dat.titulo %></a>
+    <% end %>
+        <a class="my_button" value="" href=<%= serie_path("Rojo") %>>Red</a>
+        <a class="my_button" value="" href=<%= serie_path("Azul") %>>Blue</a>
+        <a class="my_button" value="" href=<%= serie_path("Friends") %>>Friends</a>
+        <a class="my_button" value="" href=<%= serie_path("Blanco") %>>Rainbow</a>
     </body>
 
 </html>
