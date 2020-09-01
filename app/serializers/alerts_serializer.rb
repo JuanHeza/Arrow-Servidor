@@ -1,3 +1,3 @@
 class AlertsSerializer < ActiveModel::Serializer
-  attributes :id :titulo : 
+  attributes :id, :titulo, :secuencia 
 end
