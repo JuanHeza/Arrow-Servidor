@@ -2,38 +2,50 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <style>
-             /* Email styles need to be inline */
-        </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
-            function initButtons(){
-                console.log("hi");
-                $('.my_button').click(function() {
-                    console.log("hi 2");
-                    alert("Presionaste");
-                    console.log("hi 3");
-                    alert($(this).val());
-                    console.log("hi 4");
-                })
-            }
-
-            // new initButtons()
+            var i = 0
+            var colors = [<% @serie.secuencia.each do |frame| %>
+                ["<%= @colores[frame[0].to_i] %>","<%= @colores[frame[1].to_i] %>","<%= @colores[frame[2].to_i] %>","<%= @colores[frame[3].to_i] %>" ],
+            <% end %>]
+            $(document).ready(function(){
+                var pixels = document.getElementById('pixel').childNodes
+                    setInterval(function(){
+                        console.log(colors[i])
+                        pixels[1].style.backgroundColor = colors[i][0]
+                        pixels[2].style.backgroundColor = colors[i][1]
+                        pixels[3].style.backgroundColor = colors[i][2]
+                        pixels[4].style.backgroundColor = colors[i][3]
+                          i = (i + 1) % colors.length;
+                    },200)
+            })
         </script>
+        <style>
+            .pixel{
+                width: 50px; 
+                height: 50px; 
+                border-radius: 50%;
+            }
+        </style>
     </head>
 
     <body>
     <h1> Estado Actual</h1>
-    <h2>Secuencia:  </h2><h3><%= @titulo %></h3>
+    <h2>Secuencia:  </h2><h3><%= @serie.titulo %></h3>
+    <div id='serie'>
+        <div id="pixel" class='frame'>
+            <button type="button" class="pixel" disabled>
+            <button type="button" class="pixel" disabled>
+            <button type="button" class="pixel" disabled>
+            <button type="button" class="pixel" disabled>
+        </div>
+    </div>
+
     <h2>Alerta:     </h2><h3><%= @status %></h3>
         <a class="my_button" value="" href=<%= alert_path %>>Alert</a>
     <% @data.each do |dat| %>
         <a class="my_button" value="" href=<%= serie_path(dat.id) %>><%= dat.titulo %></a>
     <% end %>
-        <a class="my_button" value="" href=<%= serie_path("Rojo") %>>Red</a>
-        <a class="my_button" value="" href=<%= serie_path("Azul") %>>Blue</a>
-        <a class="my_button" value="" href=<%= serie_path("Friends") %>>Friends</a>
-        <a class="my_button" value="" href=<%= serie_path("Blanco") %>>Rainbow</a>
     </body>
 
 </html>

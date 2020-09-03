@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2020_08_27_183442) do
 
   create_table "alerts", force: :cascade do |t|
     t.string "titulo"
-    t.string "secuencia" #, default: "---\n- - red\n  - white\n  - blue\n  - green\n- - green\n  - red\n  - white\n  - blue\n- - blue\n  - green\n  - red\n  - white\n- - white\n  - blue\n  - green\n  - red\n"
+    t.string "secuencia", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(version: 2020_08_27_183442) do
     t.string "fecha"
     t.string "hora"
     t.string "repeticion"
-    t.integer "alert_id", null: false
+    t.bigint "alert_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["alert_id"], name: "index_events_on_alerta_id"
+    t.index ["alert_id"], name: "index_events_on_alert_id"
   end
 
   add_foreign_key "events", "alerts"
