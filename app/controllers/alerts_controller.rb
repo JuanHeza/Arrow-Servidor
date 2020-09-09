@@ -50,9 +50,9 @@ class AlertsController < ApplicationController
 
   def alertStatus
     if @@alertstatus
-      render json: { status: "HIGH" }.to_json, status: :ok
+      render json: { status: "HIGH", serie: @@actual }.to_json, status: :ok
     else
-      render json: { status: "LOW" }.to_json, status: :ok
+      render json: { status: "LOW", serie: @@actual }.to_json, status: :ok
     end
     # redirect_to home_path
   end

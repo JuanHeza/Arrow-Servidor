@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   ### AREA DE LINKS DEL ESCLAVO & HARDWARE ###
   get "/Status/Alert", to: "alerts#alertStatus"
   get "/Status/Serie", to: "alerts#serieStatus"
+
+  post "/telegram", to: "telegram_bots#test"
+  # post "/webhooks/telegram_vbc43edbf1614a075954dvd4bfab34l1" => 'webhooks#callback'
+  # post "/webhooks/telegram/#{ENV.fetch("TELEGRAM_BOT_TOKEN")}", to:'telegram_bot#create'
 end

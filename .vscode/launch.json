@@ -11,7 +11,10 @@
             "program": "${workspaceRoot}/bin/rails",
             "args": [
                 "server"
-            ]
+            ],
+            "env": {
+                "TELEGRAM_BOT_TOKEN": "1261154535:AAHN5l9fKpw2ocbQe6WKw14AhAkgi1nud6o"
+            }
         }
     ]
 }
