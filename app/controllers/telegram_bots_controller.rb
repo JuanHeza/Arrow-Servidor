@@ -32,7 +32,7 @@ class TelegramBotsController < ApplicationController
         pp answers
         pp message.chat.id
         # bot.send_message(chat_id: message.chat.id, text: "Bienvenido aqui puedes controlar el estado de las alertas del sistema :)", reply_markup: answers)
-        @bot.send_message(chat_id: @message.chat.id, text: "Hi, #{@message.from.first_name}, nice to see you")
+        bot.send_message(chat_id: message.chat.id, text: "Hi, #{message.from.first_name}, nice to see you")
       when "/status"
         pp "/Status"
         pp message.chat.id
