@@ -1,10 +1,11 @@
 class TelegramBotsController < ApplicationController
+  Comands = ["/start", "/status", "/toggleAlert", "/getSeries", "/setSerie", "/stop"]
+  test_series = ["Basico", "Rojo", "Blanco", "Azul", "Verde", "Friends"]
+
   def test
-    Comands = ["/start", "/status", "/toggleAlert", "/getSeries", "/setSerie", "/stop"]
-    test_series = ["Basico", "Rojo", "Blanco", "Azul", "Verde", "Friends"]
     request.body.rewind
     data = JSON.parse(request.body.read)
-    @bot = Telegram::Bot::Api.new(ENV['TELEGRAM_BOT_API_TOKEN'])
+    @bot = Telegram::Bot::Api.new(ENV["TELEGRAM_BOT_API_TOKEN"])
     @message = Telegram::Bot::Types::Update.new(data).message
     pp data
     pp "Message received: #{@message.inspect}"
