@@ -31,6 +31,14 @@ class AlertsController < ApplicationController
     "#008000", # AO
   ]
 
+  def self.actualSerie
+    @@actual
+  end
+
+  def self.alertStatus
+    @@alertstatus
+  end
+
   def home
     # print "actual:" + @@actual + "\n"
     @data = Alert.all
