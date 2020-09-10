@@ -31,19 +31,17 @@ class TelegramBotsController < ApplicationController
         pp "/Start"
         pp answers
         pp message.chat.id
-        bot.send_message(chat_id: message.chat.id, text: "Bienvenido aqui puedes controlar el estado de las alertas del sistema :)", reply_markup: answers)
-
+        # bot.send_message(chat_id: message.chat.id, text: "Bienvenido aqui puedes controlar el estado de las alertas del sistema :)", reply_markup: answers)
+        @bot.send_message(chat_id: @message.chat.id, text: "Hi, #{@message.from.first_name}, nice to see you")
       when "/status"
         pp "/Status"
         pp message.chat.id
         bot.send_message(chat_id: message.chat.id, text: "La Alerta esta #{AlertsController.alertStatus} y se esta ejecutando la secuencia: #{AlertsController.actualSerie}")
-
       when "/toggleAlert"
         pp "/toggleAlert"
         pp AlertsController.alertstatus
         AlertsController.alertstatus = AlertsController.alertstatus
         pp AlertsController.alertstatus
-
       when "/getSerie"
         pp "/getSerie"
         pp message.chat.id
@@ -62,15 +60,13 @@ class TelegramBotsController < ApplicationController
         puts answers
         pp message.chat.id
         bot.send_message(chat_id: message.chat.id, text: "Series:", reply_markup: answers)
-
       when "/stop"
         pp "/stop"
-        kb = Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true)        
+        kb = Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true)
         puts kb
         pp message.chat.id
         pp message.from.username
         bot.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.username}", reply_markup: kb)
-      
       else
         pp "N/A"
         pp message.chat.id
