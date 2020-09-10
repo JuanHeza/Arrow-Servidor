@@ -1,4 +1,6 @@
 class TelegramBotsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   Comands = ["/start", "/status", "/toggleAlert", "/getSeries", "/setSerie", "/stop"]
   test_series = ["Basico", "Rojo", "Blanco", "Azul", "Verde", "Friends"]
 
