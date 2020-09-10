@@ -10,8 +10,8 @@ class TelegramBotsController < ApplicationController
     request.body.rewind
     data = JSON.parse(request.body.read)
     @bot = Telegram::Bot::Api.new(ENV["TELEGRAM_BOT_API_TOKEN"])
-    @message = Telegram::Bot::Types::Update.new(data).Message
-    puts"=============================================================================="
+    @message = Telegram::Bot::Types::Update.new(data).message
+    puts "=============================================================================="
     case @message
     when Telegram::Bot::Types::CallbackQuery
       puts @message.data
