@@ -39,7 +39,7 @@ class AlertsController < ApplicationController
     @@alertstatus
   end
 
-  def togglealert
+  def self.togglealert
     @@alertstatus = !@@alertstatus
   end
 
