@@ -37,7 +37,7 @@ class TelegramBotsController < ApplicationController
         pp "/Status"
         pp message.chat.id
         alarma = ""   
-        if AlertsController.alertStatus do
+        if AlertsController.alertStatus
           alarma = "Encendida"
         else
           alarma = "Apagada"
@@ -50,7 +50,7 @@ class TelegramBotsController < ApplicationController
         AlertsController.alertStatus = AlertsController.alertStatus
         pp AlertsController.alertStatus   
         alarma = ""   
-        if AlertsController.alertStatus do
+        if AlertsController.alertStatus
           alarma = "Encendida"
         else
           alarma = "Apagada"
