@@ -22,6 +22,7 @@ class TelegramBotsController < ApplicationController
           break
         end
       end
+      AlertsController.set_serie(serie)
       bot.send_message(chat_id: message.from.id, text: "Serie #{serie} iniciada")
     when Telegram::Bot::Types::Message
       case message.text
