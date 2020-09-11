@@ -32,31 +32,28 @@ class TelegramBotsController < ApplicationController
         pp answers
         pp message.chat.id
         bot.send_message(chat_id: message.chat.id, text: "Bienvenido aqui puedes controlar el estado de las alertas del sistema :)", reply_markup: answers)
-
       when "/status"
         pp "/Status"
         pp message.chat.id
-        alarma = ""   
+        alarma = ""
         if AlertsController.alertStatus
           alarma = "Encendida"
         else
           alarma = "Apagada"
         end
         bot.send_message(chat_id: message.chat.id, text: "La Alerta esta #{alarma} y se esta ejecutando la secuencia: #{AlertsController.actualSerie}")
-      
       when "/toggleAlert"
         pp "/toggleAlert"
         pp AlertsController.alertStatus
-        AlertsController.alertStatus = AlertsController.alertStatus
-        pp AlertsController.alertStatus   
-        alarma = ""   
+        AlertsController.alertStatus = !AlertsController.alertStatus
+        pp AlertsController.alertStatus
+        alarma = ""
         if AlertsController.alertStatus
           alarma = "Encendida"
         else
           alarma = "Apagada"
         end
         bot.send_message(chat_id: message.from.id, text: "La alarma esta #{alarma}")
-
       when "/getSerie"
         pp "/getSerie"
         pp message.chat.id
