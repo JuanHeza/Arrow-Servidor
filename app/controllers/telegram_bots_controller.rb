@@ -45,7 +45,7 @@ class TelegramBotsController < ApplicationController
       when "/toggleAlert"
         pp "/toggleAlert"
         pp AlertsController.alertStatus
-        AlertsController.alertStatus = !AlertsController.alertStatus
+        AlertsController.togglealert
         pp AlertsController.alertStatus
         alarma = ""
         if AlertsController.alertStatus

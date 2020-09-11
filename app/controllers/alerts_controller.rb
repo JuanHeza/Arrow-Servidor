@@ -39,6 +39,10 @@ class AlertsController < ApplicationController
     @@alertstatus
   end
 
+  def togglealert
+    @@alertstatus = !@@alertstatus
+  end
+
   def home
     # print "actual:" + @@actual + "\n"
     @data = Alert.all
