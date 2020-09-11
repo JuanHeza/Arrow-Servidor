@@ -31,17 +31,32 @@ class TelegramBotsController < ApplicationController
         pp "/Start"
         pp answers
         pp message.chat.id
-        # bot.send_message(chat_id: message.chat.id, text: "Bienvenido aqui puedes controlar el estado de las alertas del sistema :)", reply_markup: answers)
-        bot.send_message(chat_id: message.chat.id, text: "Hi, #{message.from.first_name}, nice to see you")
+        bot.send_message(chat_id: message.chat.id, text: "Bienvenido aqui puedes controlar el estado de las alertas del sistema :)", reply_markup: answers)
+
       when "/status"
         pp "/Status"
         pp message.chat.id
-        bot.send_message(chat_id: message.chat.id, text: "La Alerta esta #{AlertsController.alertStatus} y se esta ejecutando la secuencia: #{AlertsController.actualSerie}")
+        alarma = ""   
+        if AlertsController.alertStatus do
+          alarma = "Encendida"
+        else
+          alarma = "Apagada"
+        end
+        bot.send_message(chat_id: message.chat.id, text: "La Alerta esta #{alarma} y se esta ejecutando la secuencia: #{AlertsController.actualSerie}")
+      
       when "/toggleAlert"
         pp "/toggleAlert"
-        pp AlertsController.alertstatus
-        AlertsController.alertstatus = AlertsController.alertstatus
-        pp AlertsController.alertstatus
+        pp AlertsController.alertStatus
+        AlertsController.alertStatus = AlertsController.alertStatus
+        pp AlertsController.alertStatus   
+        alarma = ""   
+        if AlertsController.alertStatus do
+          alarma = "Encendida"
+        else
+          alarma = "Apagada"
+        end
+        bot.send_message(chat_id: message.from.id, text: "La alarma esta #{alarma}")
+
       when "/getSerie"
         pp "/getSerie"
         pp message.chat.id

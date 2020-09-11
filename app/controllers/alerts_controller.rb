@@ -32,7 +32,7 @@ class AlertsController < ApplicationController
   ]
 
   def self.actualSerie
-    @@actual
+    Alert.find(@@actual).titulo
   end
 
   def self.alertStatus
