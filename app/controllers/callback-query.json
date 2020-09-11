@@ -1,0 +1,148 @@
+{
+    "update_id": 23788821,
+    "callback_query": {
+        "id": "145913286451871727",
+        "from": {
+            "id": 33973084,
+            "is_bot": false,
+            "first_name": "Juan",
+            "last_name": "Heza",
+            "username": "JuanHeza",
+            "language_code": "es"
+        },
+        "message": {
+            "message_id": 128,
+            "from": {
+                "id": 1261154535,
+                "is_bot": true,
+                "first_name": "J.H. / Arrow Alert",
+                "username": "JuanHeza_Arrow_Bot"
+            },
+            "chat": {
+                "id": 33973084,
+                "first_name": "Juan",
+                "last_name": "Heza",
+                "username": "JuanHeza",
+                "type": "private"
+            },
+            "date": 1599786667,
+            "text": "Series:",
+            "reply_markup": {
+                "inline_keyboard": [
+                    [
+                        {
+                            "text": "Basico",
+                            "callback_data": "1"
+                        }
+                    ],
+                    [
+                        {
+                            "text": "Rojo",
+                            "callback_data": "2"
+                        }
+                    ],
+                    [
+                        {
+                            "text": "Azul",
+                            "callback_data": "3"
+                        }
+                    ],
+                    [
+                        {
+                            "text": "Blanco",
+                            "callback_data": "4"
+                        }
+                    ],
+                    [
+                        {
+                            "text": "Verde",
+                            "callback_data": "5"
+                        }
+                    ],
+                    [
+                        {
+                            "text": "Friends",
+                            "callback_data": "6"
+                        }
+                    ]
+                ]
+            }
+        },
+        "chat_instance": "-8716196086647731249",
+        "data": "5"
+    },
+    "telegram_bot": {
+        "update_id": 23788821,
+        "callback_query": {
+            "id": "145913286451871727",
+            "from": {
+                "id": 33973084,
+                "is_bot": false,
+                "first_name": "Juan",
+                "last_name": "Heza",
+                "username": "JuanHeza",
+                "language_code": "es"
+            },
+            "message": {
+                "message_id": 128,
+                "from": {
+                    "id": 1261154535,
+                    "is_bot": true,
+                    "first_name": "J.H. / Arrow Alert",
+                    "username": "JuanHeza_Arrow_Bot"
+                },
+                "chat": {
+                    "id": 33973084,
+                    "first_name": "Juan",
+                    "last_name": "Heza",
+                    "username": "JuanHeza",
+                    "type": "private"
+                },
+                "date": 1599786667,
+                "text": "Series:",
+                "reply_markup": {
+                    "inline_keyboard": [
+                        [
+                            {
+                                "text": "Basico",
+                                "callback_data": "1"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "Rojo",
+                                "callback_data": "2"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "Azul",
+                                "callback_data": "3"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "Blanco",
+                                "callback_data": "4"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "Verde",
+                                "callback_data": "5"
+                            }
+                        ],
+                        [
+                            {
+                                "text": "Friends",
+                                "callback_data": "6"
+                            }
+                        ]
+                    ]
+                }
+            },
+            "chat_instance": "-8716196086647731249",
+            "data": "5"
+        }
+    }
+}

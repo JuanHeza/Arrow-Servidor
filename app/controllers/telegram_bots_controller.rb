@@ -3,20 +3,26 @@ require "telegram/bot"
 class TelegramBotsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  Comands = ["/start", "/status", "/toggleAlert", "/getSeries", "/setSerie", "/stop"]
-  test_series = ["Basico", "Rojo", "Blanco", "Azul", "Verde", "Friends"]
+  Comands = ["/start", "/status", "/toggleAlert", "/getSerie", "/setSerie", "/stop"]
+  # test_series = ["Basico", "Rojo", "Blanco", "Azul", "Verde", "Friends"]
 
   def test
     request.body.rewind
     data = JSON.parse(request.body.read)
     bot = Telegram::Bot::Api.new(ENV["TELEGRAM_BOT_API_TOKEN"])
-    message = Telegram::Bot::Types::Update.new(data).message
+    Telegram::Bot::Types::Update.new(data).message != nil ? message = Telegram::Bot::Types::Update.new(data).message : message = Telegram::Bot::Types::Update.new(data).callback_query
     puts "=============================================================================="
     case message
     when Telegram::Bot::Types::CallbackQuery
-      puts message.data
-      puts message.message.text
-      bot.send_message(chat_id: message.from.id, text: "Serie #{message.data} iniciada")
+      serie = ""
+      message.message.reply_markup.inline_keyboard.each do
+        |inline|
+        if inline[0]["callback_data"] == message.data
+          serie = inline[0]["text"]
+          break
+        end
+      end
+      bot.send_message(chat_id: message.from.id, text: "Serie #{serie} iniciada")
     when Telegram::Bot::Types::Message
       case message.text
       when "/start"
@@ -85,6 +91,8 @@ class TelegramBotsController < ApplicationController
         pp message.from.username
         bot.send_message(chat_id: message.chat.id, text: "Lo siento #{message.from.username}, Comando no reconocido.")
       end
+    else
+      bot.send_message(chat_id: message.chat.id, text: "ERROR NO IDENTIFICADO")
     end
   end
 end
