@@ -131,13 +131,13 @@ class TelegramBotsController < ApplicationController
           pp "/cancel"
           answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: list, one_time_keyboard: true)
           puts answers
-          bot.send_message(chat_id: message.chat.id, , reply_markup: answers)
+          bot.send_message(chat_id: message.chat.id, reply_markup: answers)
         end
       when "/newEvent"
         if !user_registered
           bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
         else
-          kb = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ["/createEvent","/cancel"], one_time_keyboard: true)
+          kb = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ["/createEvent", "/cancel"], one_time_keyboard: true)
           text = "\t**Alertas**:"
           Alert.all.each do |alerta|
             text.concat("\n", alerta.titulo)
