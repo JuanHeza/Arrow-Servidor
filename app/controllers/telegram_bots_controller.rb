@@ -32,7 +32,7 @@ class TelegramBotsController < ApplicationController
       )
       bot.send_message(chat_id: message.from.id, text: "Serie #{serie} iniciada")
     when Telegram::Bot::Types::Message
-      case message.text[message.entities[0].offset..message.entities[0].length] #AQUI VA EL OFFSET <====================================== 
+      case message.text[message.entities[0].offset..message.entities[0].length] #AQUI VA EL OFFSET <======================================
       when "/start"
         list = []
         for i in 0..Comands.size
@@ -115,9 +115,11 @@ class TelegramBotsController < ApplicationController
           kb = Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true)
           puts kb
           pp message.chat.id
-          pp message.from.username        
+          pp message.from.username
           user = User.where(chat_id: message.chat.id)[0]
-          user != nil ? user.destroy
+          if user != nil
+            user.destroy
+          end
           bot.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.username}", reply_markup: kb)
         end
       when "/newEvent"
@@ -127,15 +129,15 @@ class TelegramBotsController < ApplicationController
           kb = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ["/createEvent"], one_time_keyboard: true)
           text = "\t**Alertas**:"
           Alert.all.each do |alerta|
-            text.concat("\n",alerta.titulo)
+            text.concat("\n", alerta.titulo)
           end
           text.concat("\n\n\t**Repeticion**:")
-          ["Diario","2 dias","Habiles","Semanal","Bisemanal","Mensual","Bimensual"].each do |repet|
-            text.concat("\n",repet)
+          ["Diario", "2 dias", "Habiles", "Semanal", "Bisemanal", "Mensual", "Bimensual"].each do |repet|
+            text.concat("\n", repet)
           end
           text.concat("\n\n\t**Usuarios**:")
           User.all.each do |user|
-            text.concat("\n",user)
+            text.concat("\n", user)
           end
           bot.send_message(chat_id: message.chat.id, text: text, reply_markup: kb)
         end
@@ -147,7 +149,7 @@ class TelegramBotsController < ApplicationController
           if values.length == 7
             values.collect! do |value|
               value[0] == " " ? value = value[1..value.length].capitalize : value.capitalize
-              value[value.length-1] == " " ? value = value[0..value.length - 2].capitalize : value.capitalize
+              value[value.length - 1] == " " ? value = value[0..value.length - 2].capitalize : value.capitalize
             end
             Event.create(
               titulo: values[0],
@@ -196,7 +198,7 @@ class TelegramBotsController < ApplicationController
     if values.length == 7
       values.collect! do |value|
         value[0] == " " ? value = value[1..value.length].capitalize : value.capitalize
-        value[value.length-1] == " " ? value = value[0..value.length - 2].capitalize : value.capitalize
+        value[value.length - 1] == " " ? value = value[0..value.length - 2].capitalize : value.capitalize
       end
       pp Event.create(
         titulo: values[0],
