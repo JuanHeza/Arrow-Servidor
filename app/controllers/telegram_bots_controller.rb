@@ -131,7 +131,7 @@ class TelegramBotsController < ApplicationController
           pp "/cancel"
           answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: list, one_time_keyboard: true)
           puts answers
-          bot.send_message(chat_id: message.chat.id, reply_markup: answers)
+          bot.send_message(chat_id: message.chat.id, text: "creacion cancelada", reply_markup: answers)
         end
       when "/newEvent"
         if !user_registered
