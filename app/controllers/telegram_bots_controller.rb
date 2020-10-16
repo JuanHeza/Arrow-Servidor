@@ -33,6 +33,7 @@ class TelegramBotsController < ApplicationController
       AlertsController.saveActual
       bot.send_message(chat_id: message.from.id, text: "Serie #{serie} iniciada")
     when Telegram::Bot::Types::Message
+      puts message.text[message.entities[0].offset..message.entities[0].length]
       case message.text[message.entities[0].offset..message.entities[0].length] #AQUI VA EL OFFSET <======================================
       when "/start"
         list = []
@@ -143,14 +144,14 @@ class TelegramBotsController < ApplicationController
             text.concat("\n", alerta.titulo)
           end
           text.concat("\n\n*Repeticion*:")
-          ["Diario", "2 dias", "Habiles", "Semanal", "Bisemanal", "Mensual", "Bimensual"].each do |repet|
+          ["Nunca" , "Diario", "2 dias", "Habiles", "Semanal", "Bisemanal", "Mensual", "Bimensual"].each do |repet|
             text.concat("\n", repet)
           end
           text.concat("\n\n*Usuarios*: \n Todos")
           User.all.each do |user|
             text.concat("\n", user.first_name, "", user.last_name)
           end
-          text.concat("\n\n *Formato* \n \/createEvent Titulo \\| Descripcion \\| 00:00 \\| 23\\-08\\-2002 \\| Serie \\| Repeticion \\| Usuario, usuario")
+          text.concat("\n\n *Formato* \n \/createEvent Titulo \\| Descripcion \\| 24:59 \\| 23\\-08\\-2002 \\| Serie \\| Repeticion \\| Usuario, usuario")
           pp text
           bot.send_message(chat_id: message.chat.id, text: text, reply_markup: kb, parse_mode: "MarkdownV2")
         end
@@ -158,7 +159,7 @@ class TelegramBotsController < ApplicationController
         if !user_registered
           bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
-          values = message.text[message.entities[0].length...message.text.length].split("&", -1)
+          values = message.text[message.entities[0].length...message.text.length].split("|", -1)
           if values.length == 7
             values.collect! do |value|
               value[0] == " " ? value = value[1..value.length].capitalize : value.capitalize

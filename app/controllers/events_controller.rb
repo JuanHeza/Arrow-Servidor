@@ -28,7 +28,9 @@ class EventsController < ApplicationController
           )
           AlertsController.saveActual
           @@Alerted_Events[event.titulo] == true
-          EventsController.updateDate(event, event.repeticion)
+          if event.repeticion != 0
+            EventsController.updateDate(event, event.repeticion)
+          end
         end
         puts "La Alerta esta #{AlertsController.alertStatus} y se esta ejecutando la secuencia: #{AlertsController.actualSerie}"
         pp event
