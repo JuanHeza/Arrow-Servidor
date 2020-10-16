@@ -24,8 +24,9 @@ class EventsController < ApplicationController
           pp Update.create(
             titulo: "Evento #{event.titulo} activado.",
             cuerpo: "#{event.cuerpo}.",
-            clase: "evento",
+            clase: "evento"
           )
+          AlertsController.saveActual
           @@Alerted_Events[event.titulo] == true
           EventsController.updateDate(event, event.repeticion)
         end

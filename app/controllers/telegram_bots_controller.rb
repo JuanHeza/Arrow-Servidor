@@ -28,8 +28,9 @@ class TelegramBotsController < ApplicationController
       pp Update.create(
         titulo: "Via Telegram",
         cuerpo: "#{message.from.first_name} activo la serie #{serie}.",
-        clase: "telegram",
+        clase: "telegram"
       )
+      AlertsController.saveActual
       bot.send_message(chat_id: message.from.id, text: "Serie #{serie} iniciada")
     when Telegram::Bot::Types::Message
       case message.text[message.entities[0].offset..message.entities[0].length] #AQUI VA EL OFFSET <======================================
@@ -43,7 +44,7 @@ class TelegramBotsController < ApplicationController
         end
         answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: list, one_time_keyboard: true)
         pp "/Start"
-        UsersController.new_user(message.chat.id, message.from.username, message.from.first_name, message.from.last_name)
+        UsersController.new_User(message.chat.id, message.from.username, message.from.first_name, message.from.last_name)
         pp answers
         pp message.chat.id
         bot.send_message(chat_id: message.chat.id, text: "Bienvenido aqui puedes controlar el estado de las alertas del sistema :)", reply_markup: answers)
@@ -78,8 +79,9 @@ class TelegramBotsController < ApplicationController
           pp Update.create(
             titulo: "Via Telegram",
             cuerpo: "El usuario: #{message.from.first_name} #{alarma} la alarma.",
-            clase: "telegram",
+            clase: "telegram"
           )
+          AlertsController.saveActual
           bot.send_message(chat_id: message.from.id, text: "La alarma se #{alarma}")
         end
       when "/getSerie"

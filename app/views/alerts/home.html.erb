@@ -1,8 +1,23 @@
     <%= javascript_pack_tag "Home" %>
     <script>
-        setColors([<% @serie.secuencia.each do |frame| %>["<%= @colores[frame[0]] %>","<%= @colores[frame[1]] %>","<%= @colores[frame[2]] %>","<%= @colores[frame[3]] %>" ],<% end %>])
+        // setColors([<% @serie.secuencia.each do |frame| %>["<%= @colores[frame[0]] %>","<%= @colores[frame[1]] %>","<%= @colores[frame[2]] %>","<%= @colores[frame[3]] %>" ],<% end %>])
 
-        $(document).ready(function(){ setInterval(Animate,250)  })
+        // $(document).ready(function(){ setInterval(Animate,250)  })
+            var i = 0
+            var colors = [<% @serie.secuencia.each do |frame| %>
+                ["<%= @colores[frame[0].to_i] %>","<%= @colores[frame[1].to_i] %>","<%= @colores[frame[2].to_i] %>","<%= @colores[frame[3].to_i] %>" ],
+            <% end %>]
+            $(document).ready(function(){
+                var pixels = document.getElementById('pixel').childNodes
+                    setInterval(function(){
+                        console.log(colors[i])
+                        pixels[1].style.backgroundColor = colors[i][0]
+                        pixels[2].style.backgroundColor = colors[i][1]
+                        pixels[3].style.backgroundColor = colors[i][2]
+                        pixels[4].style.backgroundColor = colors[i][3]
+                          i = (i + 1) % colors.length;
+                    },200)
+            })
     </script>
     
     <div class="title">
@@ -179,7 +194,7 @@
                     <div>
                         <div class="update_head">
                             <div class="update_title"> <%= update.titulo %></div>
-                            <div class="update_time"> <%= update.created_at.strftime("%H:%M - %d/%m/%Y") %></div>
+                            <div class="update_time"> <%= (update.created_at.localtime).strftime("%H:%M - %d/%m/%Y") %></div>
                             </div>
                         <div class="update_body"><%= update.cuerpo %></div>
                     </div>

@@ -13,7 +13,9 @@
                 "server"
             ],
             "env": {
-                "TELEGRAM_BOT_TOKEN": "1261154535:AAHN5l9fKpw2ocbQe6WKw14AhAkgi1nud6o"
+                "TELEGRAM_BOT_TOKEN": "1261154535:AAHN5l9fKpw2ocbQe6WKw14AhAkgi1nud6o",
+                "serie": 6,
+                "status": true,
             }
         }
     ]

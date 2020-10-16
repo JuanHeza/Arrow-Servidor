@@ -37,7 +37,7 @@ task get_database: :environment do
   pp "Alertas: #{Alert.all.length}"
   pp "Eventos: #{Event.all.length}"
   pp "Updates: #{Update.all.length}"
-  pp Event.last.created_at.strftime("%H:%M - %d/%m/%Y")
+  pp Event.last.created_at.localtime
   puts Time.now
 end
 
@@ -48,15 +48,15 @@ end
 task message: :environment do
   text = "\tAlertas:"
   Alert.all.each do |alerta|
-    text.concat("\n",alerta.titulo)
+    text.concat("\n", alerta.titulo)
   end
   text.concat("\n\n\tRepeticion:")
-  ["Diario","2 dias","Habiles","Semanal","Bisemanal","Mensual","Bimensual"].each do |repet|
-    text.concat("\n",repet)
+  ["Diario", "2 dias", "Habiles", "Semanal", "Bisemanal", "Mensual", "Bimensual"].each do |repet|
+    text.concat("\n", repet)
   end
   text.concat("\n\n\tUsuarios:")
   User.all.each do |user|
-    text.concat("\n",user)
+    text.concat("\n", user)
   end
   puts text
 end

@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2020_10_14_182851) do
     t.string "titulo"
     t.string "cuerpo"
     t.string "clase"
+    # t.bigint "alert_id", null: false
+    # t.boolean "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -55,4 +57,5 @@ ActiveRecord::Schema.define(version: 2020_10_14_182851) do
   end
 
   add_foreign_key "events", "alerts"
+  # add_foreign_key "updates", "alerts"
 end

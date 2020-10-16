@@ -1,25 +1,27 @@
 var pixelID = 0;
 var newSerie = false;
 var framePixel;
-var count = 0;
+// var count = 0;
 var prevSerie;
-var colors = [];
+// var colors = [[]];
 
-//function setColors(input){
-window.setColors = function (input) {
-  colors = input;
-  console.log(colors);
-};
+// //function setColors(input){
+// window.setColors = function (input) {
+//   colors = input;
+//   console.log(colors);
+// };
 
-//function Animate(){
-window.Animate = function () {
-  var pixels = document.getElementsByClassName("pixel");
-  pixels[0].style.backgroundColor = colors[count][0];
-  pixels[1].style.backgroundColor = colors[count][1];
-  pixels[2].style.backgroundColor = colors[count][2];
-  pixels[3].style.backgroundColor = colors[count][3];
-  count = (count + 1) % colors.length;
-};
+// //function Animate(){
+// window.Animate = function () {
+//   var pixels = document.getElementsByClassName("pixel");
+//   console.log("Pixels:",pixels.length);
+//   console.log("Colors:",colors.length);
+//   pixels[0].style.backgroundColor = colors[count][0];
+//   pixels[1].style.backgroundColor = colors[count][1];
+//   pixels[2].style.backgroundColor = colors[count][2];
+//   pixels[3].style.backgroundColor = colors[count][3];
+//   count = (count + 1) % colors.length;
+// };
 
 // function CustomColors() {
 window.CustomColors = function () {

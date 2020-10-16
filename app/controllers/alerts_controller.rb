@@ -1,7 +1,7 @@
 class AlertsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  @@actual = 1
-  @@alertstatus = false
+  @@actual = ENV["serie"]
+  @@alertstatus = ENV["status"]
   @@colores = [
     "#000000", # BLACK
     "#000080", # NAVY BLUE
@@ -36,6 +36,11 @@ class AlertsController < ApplicationController
   def self.actualSerie
     Alert.find(@@actual).titulo
   end
+  def self.saveActual
+    ENV["serie"] = @@actual
+    ENV["status"] = @@alertstatus.to_s
+    pp ENV["serie"], ENV["status"]
+  end
 
   def self.set_serie(n)
     @@actual = n
@@ -57,7 +62,8 @@ class AlertsController < ApplicationController
     # print "actual:" + @@actual + "\n"
     @data = {}
     @data["alerts"] = Alert.all
-    @data["updates"] = Update.order(created_at: :desc).last(10)
+    @data["updates"] = Update.last(10).reverse
+    pp @data["updates"]
     if @@actual != 0
       @serie = Alert.find(@@actual)
     else
@@ -85,6 +91,7 @@ class AlertsController < ApplicationController
       cuerpo: "La alarma se ha #{@status}.",
       clase: "web",
     )
+    AlertsController.saveActual
     redirect_to home_path
   end
 
@@ -105,6 +112,7 @@ class AlertsController < ApplicationController
       cuerpo: "Se activo la serie #{Alert.find(@@actual).titulo}.",
       clase: "web",
     )
+    AlertsController.saveActual
     redirect_to home_path
   end
 
