@@ -124,11 +124,20 @@ class TelegramBotsController < ApplicationController
           end
           bot.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.username}", reply_markup: kb)
         end
+      when "/cancel"
+        if !user_registered
+          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
+        else
+          pp "/cancel"
+          answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: list, one_time_keyboard: true)
+          puts answers
+          bot.send_message(chat_id: message.chat.id, , reply_markup: answers)
+        end
       when "/newEvent"
         if !user_registered
           bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
         else
-          kb = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ["/createEvent"], one_time_keyboard: true)
+          kb = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ["/createEvent","/cancel"], one_time_keyboard: true)
           text = "\t**Alertas**:"
           Alert.all.each do |alerta|
             text.concat("\n", alerta.titulo)
@@ -141,7 +150,7 @@ class TelegramBotsController < ApplicationController
           User.all.each do |user|
             text.concat("\n", user.first_name, "\t", user.last_name)
           end
-          text.concat("\n\n **Formato** \n Titulo | Descripcion | 00:00 | 23-08-2222 | Serie | Repeticion | Usuario, usuario")
+          text.concat("\n\n **Formato** \n Titulo \| Descripcion \| 00:00 \| 23-08-2222 \| Serie \| Repeticion \| Usuario, usuario")
           bot.send_message(chat_id: message.chat.id, text: text, reply_markup: kb, parse_mode: "MarkdownV2")
         end
       when "/createEvent"
