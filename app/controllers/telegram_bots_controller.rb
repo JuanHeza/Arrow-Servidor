@@ -138,19 +138,19 @@ class TelegramBotsController < ApplicationController
           bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
           kb = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ["/createEvent", "/cancel"], one_time_keyboard: true)
-          text = "\t*Alertas*:"
+          text = "*Alertas*:"
           Alert.all.each do |alerta|
             text.concat("\n", alerta.titulo)
           end
-          text.concat("\n\n\t*Repeticion*:")
+          text.concat("\n\n*Repeticion*:")
           ["Diario", "2 dias", "Habiles", "Semanal", "Bisemanal", "Mensual", "Bimensual"].each do |repet|
             text.concat("\n", repet)
           end
-          text.concat("\n\n\t*Usuarios*: \n Todos")
+          text.concat("\n\n*Usuarios*: \n Todos")
           User.all.each do |user|
-            text.concat("\n", user.first_name, "\t", user.last_name)
+            text.concat("\n", user.first_name, "", user.last_name)
           end
-          text.concat("\n\n *Formato* \n \/createEvent Titulo \& Descripcion \& 00:00 \& 23\\-08/2002 \& Serie \& Repeticion \& Usuario, usuario")
+          text.concat("\n\n *Formato* \n \/createEvent Titulo \\| Descripcion \\| 00:00 \\| 23\\-08\\-2002 \\| Serie \\| Repeticion \\| Usuario, usuario")
           pp text
           bot.send_message(chat_id: message.chat.id, text: text, reply_markup: kb, parse_mode: "MarkdownV2")
         end
