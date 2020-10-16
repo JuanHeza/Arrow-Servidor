@@ -150,7 +150,7 @@ class TelegramBotsController < ApplicationController
           User.all.each do |user|
             text.concat("\n", user.first_name, "\t", user.last_name)
           end
-          text.concat("\n\n **Formato** \n \/createEvent Titulo \& Descripcion \& 00:00 \& 23-08-2222 \& Serie \& Repeticion \& Usuario, usuario")
+          text.concat("\n\n **Formato** \n \/createEvent Titulo \& Descripcion \& 00:00 \& 23\-08\-2222 \& Serie \& Repeticion \& Usuario, usuario")
           pp text
           bot.send_message(chat_id: message.chat.id, text: text, reply_markup: kb, parse_mode: "MarkdownV2")
         end
