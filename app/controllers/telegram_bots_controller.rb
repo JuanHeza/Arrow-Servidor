@@ -139,7 +139,7 @@ class TelegramBotsController < ApplicationController
           end
           text.concat("\n\n\t**Usuarios**:")
           User.all.each do |user|
-            text.concat("\n", user)
+            text.concat("\n", user.first_name, "\t", user.last_name)
           end
           bot.send_message(chat_id: message.chat.id, text: text, reply_markup: kb)
         end
