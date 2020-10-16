@@ -50,7 +50,7 @@ class TelegramBotsController < ApplicationController
         bot.send_message(chat_id: message.chat.id, text: "Bienvenido aqui puedes controlar el estado de las alertas del sistema :)", reply_markup: answers)
       when "/status"
         if !user_registered
-          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
+          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
           pp "/Status"
           pp message.chat.id
@@ -64,7 +64,7 @@ class TelegramBotsController < ApplicationController
         end
       when "/toggleAlert"
         if !user_registered
-          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
+          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
           pp "/toggleAlert"
           pp AlertsController.alertStatus
@@ -86,7 +86,7 @@ class TelegramBotsController < ApplicationController
         end
       when "/getSerie"
         if !user_registered
-          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
+          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
           pp "/getSerie"
           pp message.chat.id
@@ -96,7 +96,7 @@ class TelegramBotsController < ApplicationController
         end
       when "/setSerie"
         if !user_registered
-          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
+          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
           pp "/setSerie"
           kb = []
@@ -111,7 +111,7 @@ class TelegramBotsController < ApplicationController
         end
       when "/stop"
         if !user_registered
-          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
+          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
           pp "/stop"
           kb = Telegram::Bot::Types::ReplyKeyboardRemove.new(remove_keyboard: true)
@@ -126,7 +126,7 @@ class TelegramBotsController < ApplicationController
         end
       when "/cancel"
         if !user_registered
-          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
+          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
           pp "/cancel"
           answers = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: list, one_time_keyboard: true)
@@ -135,28 +135,28 @@ class TelegramBotsController < ApplicationController
         end
       when "/newEvent"
         if !user_registered
-          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
+          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
           kb = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ["/createEvent", "/cancel"], one_time_keyboard: true)
-          text = "\t**Alertas**:"
+          text = "\t*Alertas*:"
           Alert.all.each do |alerta|
             text.concat("\n", alerta.titulo)
           end
-          text.concat("\n\n\t**Repeticion**:")
+          text.concat("\n\n\t*Repeticion*:")
           ["Diario", "2 dias", "Habiles", "Semanal", "Bisemanal", "Mensual", "Bimensual"].each do |repet|
             text.concat("\n", repet)
           end
-          text.concat("\n\n\t**Usuarios**: \n Todos")
+          text.concat("\n\n\t*Usuarios*: \n Todos")
           User.all.each do |user|
             text.concat("\n", user.first_name, "\t", user.last_name)
           end
-          text.concat("\n\n **Formato** \n \/createEvent Titulo \& Descripcion \& 00:00 \& 23/08/2002 \& Serie \& Repeticion \& Usuario, usuario")
+          text.concat("\n\n *Formato* \n \/createEvent Titulo \& Descripcion \& 00:00 \& 23\\-08/2002 \& Serie \& Repeticion \& Usuario, usuario")
           pp text
           bot.send_message(chat_id: message.chat.id, text: text, reply_markup: kb, parse_mode: "MarkdownV2")
         end
       when "/createEvent"
         if !user_registered
-          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando **/start** para poder acceder a estas funciones")
+          bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
           values = message.text[message.entities[0].length...message.text.length].split("&", -1)
           if values.length == 7
