@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ArrowServidor</title>
+    <title>Juan Heza - Arrow Alerts</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path("artemisa.png") %>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+    <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+    
+    <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
 
   <body>
+    <%= render "layouts/header" %>
     <%= yield %>
+    <% # <%= render 'layouts/footer' %>
   </body>
 </html>

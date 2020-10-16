@@ -13,3 +13,560 @@
  *= require_tree .
  *= require_self
  */
+ /* =require alerts*/
+
+ :root{
+    --body-Background: #f7bb4d;
+    --Wood-Color: #b39664;
+    --background_color:#505050; 
+    background-color: var(--background_color);
+    /* --image: url("https://www.transparenttextures.com/patterns/wood-pattern.png"); */
+ }
+
+ .pixel, .colors{
+    width: 50px; 
+    height: 50px; 
+    border-radius: 50%;
+}
+
+.my_button, .my_button:link, .my_button:visited{
+    position: relative;
+    display: inline-block;
+    padding: 15px;
+    border-style: solid;
+    border-width: 2px;
+    background-color: indigo;
+    border-radius: 50px;
+    border-color: #ffffff;
+    font-family: Arial;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    vertical-align: middle;
+    transition: all 0.5s;
+    text-align: center;  
+    text-decoration: none;
+    justify-content: center;
+}
+.my_button:hover{
+    background-color: maroon;
+}
+.push_button{
+    background-color: forestgreen;
+}
+/* ==========       ARROW     ========== */
+#ArrowDraw, #titulos, #serie, #colors, #NewSerie, #buttons{
+    margin: 0 auto;
+}
+.alert{
+    grid-area: alert;
+}
+#buttons{
+    display: grid;
+    margin-bottom: 20px;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    max-width: 100%;
+    grid-template-areas: "alert alert alert";
+}
+#colors{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    gap: 3px;
+    max-width: 100%;
+}
+#ArrowDraw{
+    background-color: var(--Wood-Color);
+    /* background-image: var(--image); */
+    position: relative;
+    height: 210px;
+    width: 485px;
+}
+
+
+#serie{
+    height: 50px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 30%;
+    margin-top:20px;
+    background-color: #242424;
+    box-shadow: 0px -1px 15px 5px #c0c0c088;
+}
+.Arrow_1, .Arrow_2, .Arrow_3, .Arrow_4, .Arrow_5, #titulos>div {
+    position: relative;
+    float: left;
+}
+
+/* ==========       ARROW_1     ========== */
+#ArrowDraw>.Arrow_1>.ArrowTop{
+    /* #ArrowDraw>.ArrowTop>.Arrow_1{ */
+        width: 0;
+        height: 0;
+        border-top: 105px solid var(--background_color);/* transparent; */
+        /* border-top: 210px solid transparent; */
+        border-right: 180px solid transparent; /* var(--body-Background); */
+    }
+    
+    
+#ArrowDraw>.Arrow_1>.ArrowBottom{
+/* #ArrowDraw>.ArrowBottom>.Arrow_1{ */
+    width: 0;
+	height: 0;
+	border-bottom: 105px solid var(--background_color);/* transparent; */
+	/* border-bottom: 210px solid transparent; */
+    border-right: 180px solid transparent; /* var(--body-Background); */
+}
+
+/* ==========       ARROW_2     ========== */
+#ArrowDraw>.Arrow_2>.ArrowTop{
+/* #ArrowDraw>.ArrowTop>.Arrow_2{ */
+    border-bottom: 57.5px solid transparent; /* var(--body-Background); */
+    /* border-bottom: 115px solid var(--body-Background);; */
+	border-top: 47.5px solid var(--background_color);/* transparent; */
+    
+	/* height: 95px; */
+    width: 115px;
+}
+
+#ArrowDraw>.Arrow_2>.ArrowBottom{
+/* #ArrowDraw>.ArrowBottom>.Arrow_2{ */
+    
+    border-top: 57.5px solid transparent; /* var(--body-Background); */
+    /* border-top: 115px solid var(--body-Background);; */
+	border-bottom: 47.5px solid var(--background_color);/* transparent; */
+	/* height: 95px; */
+	width: 115px;
+}
+
+/* ==========       ARROW_3     ========== */
+#ArrowDraw>.Arrow_3>.ArrowTop{
+/* #ArrowDraw>.ArrowTop>.Arrow_3{ */
+    border-bottom: 95px solid transparent; /* var(--body-Background); */
+    /* border-bottom: 115px solid var(--body-Background);; */
+	border-top: 10px solid var(--background_color);/* transparent; */
+	/* height: 95px; */
+    width: 40px;
+    top:20px;
+}
+#ArrowDraw>.Arrow_3>.ArrowTop:after{
+    /* // #ArrowDraw>.ArrowTop>.Arrow_3:after { // */
+        border-top: 37.5px solid var(--background_color);
+        /* // border-bottom: 75px solid var(--body-Background);; // */
+        border-right: 40px solid transparent; 
+        
+        content: "";
+        height: 0;
+        right: 0;
+        top: 10px;
+        /* // top: 20px; // */
+        width: 0;
+        position: absolute
+    }
+
+#ArrowDraw>.Arrow_3>.ArrowBottom{
+/* #ArrowDraw>.ArrowBottom>.Arrow_3{ */
+    border-top: 95px solid transparent; /* var(--body-Background); */
+    /* border-top: 115px solid var(--body-Background);; */
+	border-bottom: 10px solid var(--background_color);/* transparent; */
+    
+	/* height: 95px; */
+	width: 40px;
+}
+#ArrowDraw>.Arrow_3>.ArrowBottom:after{ 
+    /* // #ArrowDraw>.ArrowBottom>.Arrow_3:after { // */
+        border-bottom: 37.5px solid var(--background_color);
+        /* // border-top: 75px solid var(--body-Background);; // */
+        border-right: 40px solid transparent; 
+        
+        content: "";
+        height: 0;
+        right: 0;
+        bottom: 10px;
+        /* // bottom: 20px; // */
+        width: 0;
+        position: absolute
+      }
+
+/* ==========       ARROW_4     ========== */
+
+#ArrowDraw>.Arrow_4>.ArrowTop{    
+/* #ArrowDraw>.ArrowTop>.Arrow_4{ */
+    width: 70px;
+    border-top: 10px solid var(--background_color);
+    /* height: 20px; */
+    border-bottom: 95px solid transparent; /* var(--body-Background); */
+    /* border-bottom: 190px solid var(--body-Background); */
+}
+
+
+#ArrowDraw>.Arrow_4>.ArrowBottom{
+/* #ArrowDraw>.ArrowBottom>.Arrow_4{ */
+    width: 70px;
+    border-bottom: 10px solid var(--background_color);
+    /* height: 20px; */
+    border-top: 95px solid transparent /* var(--body-Background); */
+    /* border-top: 190px solid var(--body-Background); */
+}
+
+/* ==========       ARROW_5     ========== */
+#ArrowDraw>.Arrow_5>.ArrowTop{
+/* #ArrowDraw>.ArrowTop>.Arrow_5{ */
+    width: 0;
+    height: 0;
+    margin-top: 10px;
+    /* margin-top: 20px; */
+	border-bottom: 95px solid var(--background_color);/* transparent; */
+    
+	/* border-bottom: 190px solid transparent; */
+    border-left: 80px solid transparent; /* var(--body-Background); */
+}
+#ArrowDraw>.Arrow_5>.ArrowTop:after{ 
+    border-top: 10px solid var(--background_color);
+    content: "";
+    height: 10px;
+    right: 0;
+    top: 0px;
+    width: 80px;
+    position: absolute;
+}
+
+/* #ArrowDraw>.ArrowBottom>.Arrow_5{ */
+#ArrowDraw>.Arrow_5>.ArrowBottom{
+    width: 0;
+	height: 0;
+	border-top: 95px solid var(--background_color);/* transparent; */
+	/* border-top: 190px solid transparent; */
+    border-left: 80px solid transparent; /* var(--body-Background); */
+}
+#ArrowDraw>.Arrow_5>.ArrowBottom:after{ 
+    border-bottom: 10px solid var(--background_color);
+    content: "";
+    height: 10px;
+    right: 0;
+    bottom: -10px;
+    width: 80px;
+    position: absolute;
+}
+
+
+/* ==========       PIXEL     ========== */
+.PixelLight {
+    width: 16px;
+    height: 16px;
+    background: #dedbdb;
+    border-radius: 50%;
+    position: absolute;
+      box-shadow: #00000033 0 -1px 7px 1px, inset #444444 0 -1px 9px, #88888880 0 2px 12px;
+}
+
+.On{
+    animation: blinkLed 1s infinite;
+}
+
+@keyframes blinkLed {
+    from { background-color: #f00; }
+    16% { background-color: #ff0;}
+    33% { background-color: #0f0;}
+    49% { background-color: #0ff;}
+    66% { background-color: #00f;}
+    82% { background-color: #f0f;}
+    to { background-color: #f00;}
+}
+
+/* ==========       PIXEL #1     ========== */
+
+#P1{
+    left: 20px;
+    bottom: 95px
+  }
+
+  #P2{
+    top: 135px;
+    left: 90px;
+  }
+
+  #P3{
+    bottom: 135px;
+    left: 90px;
+  }
+
+  #P4{
+    top: 30px;
+    right: 15px;
+  }
+
+  #P5{
+    bottom: 30px;
+    right: 15px;
+  }
+
+  #P6{
+      bottom: 95px;
+      right: 10px;
+  }
+
+  /* ==========       PIXEL #2     ========== */
+
+  #P7{
+    bottom: 95px;
+    left: 25px;
+  }
+  #P8{
+    bottom: 95px;
+    right: 25px;
+  }
+
+  /* ==========       PIXEL #3     ========== */
+
+  #P9{
+    bottom: 95px;
+    right: 10px;
+    }
+
+    /* ==========       PIXEL #4     ========== */
+
+  #P10{
+    top: 25px;
+    left: 16px;
+    }
+
+  #P11{
+    bottom: 25px;
+    left: 16px;
+}
+  #P12{
+    bottom: 95px;
+    right: 16px;
+}
+
+/* ==========       PIXEL #5     ========== */
+
+  #P13{
+    top: 25px;
+    right: 40px;
+}
+  #P14{
+    bottom: 15px;
+    right: 40px;
+}
+
+/* ==========       HEADER     ========== */
+
+header{
+	position: relative;
+	width: 100%;
+	background-color: var(--background_color);
+}
+
+#header-container{
+	position: relative;
+
+  height: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: var(--background_color);
+  padding: 0% 5% 0% 5%;
+}
+
+.title{
+	position: relative;
+	font-family: miso-bold;
+	color: #ffffff;
+	font-size: 30px;
+    height: 50px;
+    width: 100%;
+	/* margin-bottom: 20px; */
+}
+
+label{
+    font-family: miso-bold;
+    color: #ffffff;
+    font-size: 20px;
+    height: 30px;
+}
+
+#title-robby{
+	top: 12px;
+    float: left;
+    text-align: center;
+}
+
+.col-20{
+    text-align: center;
+    float: left;
+    top: 10px;
+    text-decoration: solid;
+    width: 20%;
+}
+
+.status-info{
+    font-weight: bold;
+}
+
+#frame{
+    display: inline-grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+}
+
+#frames{
+    margin-bottom: 20px;
+    max-height: 320px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+#NewSerie, #NewEvent{
+    width: 100%;
+    display: none;
+}
+.col-25{
+    text-align: center;
+    float: left;
+    width: 25%;
+}
+.col-75{
+    text-align: center;
+    float: left;
+    width: 75%;
+}
+.row{
+    height: 50px;
+    width: 100%;
+}
+
+.checkbox_option,.radio_option{
+    opacity: 0;
+    width: 0;
+    position: absolute;
+    height: 0;
+  }
+
+  .label_option{
+    position: relative;
+    display: inline-block;
+    border-style: solid;
+    border-width: 2px;
+    background-color: silver;
+    border-radius: 50px;
+    border-color: #ffffff;
+    font-family: Arial;
+    color: #ffffff;
+    vertical-align: middle;
+    transition: all 0.5s;
+    text-align: center;  
+    text-decoration: none;
+    justify-content: center;
+    /*height: 45px;*/
+    padding: 5px;
+    width: 80%;
+    font-size: initial;
+  }
+
+  .checkbox_option:checked + .label_option,
+    .radio_option:checked + .label_option {
+    background-color: green;
+  }
+
+  #usersRow{
+      display:none;
+  }
+
+
+  [type="text"]{
+    width: 80%;
+  }
+
+  .panels{
+      height: 450px;
+      width: 100%;
+  }
+  .panel_1,  .panel_2,  .panel_3{
+      float: left;
+      position: relative;
+      max-height: 450px;
+  }
+
+  .panel_1,.panel_3{
+    width: 400px;
+    padding: 10px;
+    overflow: auto;
+    height: 100%;
+    margin-bottom: 20px;
+}
+.panel_2{
+    width:485px;
+}
+.input_time{
+    width: 100%;
+    font-size: small;
+}
+
+.options{
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 30px;
+}
+
+.last{
+    text-align: center;
+}
+
+.update{
+    border-color: aliceblue;
+    border-style: solid;
+    border-radius: 20px;
+    border-width: 2px;
+    height: 76px;
+    text-align: center;
+    padding: 10px;
+    background-color: mediumslateblue;
+    margin-bottom: 5px;
+}
+
+.icon{
+    height: 76px;
+    float: left;
+    width: 76px;
+    /* background: blueviolet; */
+    border-radius: 50%; 
+    background-size: 70%;
+}
+
+.update_body, .update_head{
+    float: left;
+    width: 280px;
+    color: azure;
+}
+
+.update_body{
+    height: 53px;
+}
+
+.update_head{
+    height: 23px;
+}
+
+.update_title, .update_time{
+    height: 100%;
+    float: left;
+}
+
+.update_title{
+    font-size: medium;
+    width: 70%;
+    font-weight: bold;
+}
+
+.update_time{
+    font-size: 10px;
+    width: 30%;
+}
+
+#Dashboard{
+    overflow: hidden;
+}

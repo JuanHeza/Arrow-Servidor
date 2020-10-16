@@ -1,51 +1,195 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            var i = 0
-            var colors = [<% @serie.secuencia.each do |frame| %>
-                ["<%= @colores[frame[0].to_i] %>","<%= @colores[frame[1].to_i] %>","<%= @colores[frame[2].to_i] %>","<%= @colores[frame[3].to_i] %>" ],
-            <% end %>]
-            $(document).ready(function(){
-                var pixels = document.getElementById('pixel').childNodes
-                    setInterval(function(){
-                        console.log(colors[i])
-                        pixels[1].style.backgroundColor = colors[i][0]
-                        pixels[2].style.backgroundColor = colors[i][1]
-                        pixels[3].style.backgroundColor = colors[i][2]
-                        pixels[4].style.backgroundColor = colors[i][3]
-                          i = (i + 1) % colors.length;
-                    },250)
-            })
-        </script>
-        <style>
-            .pixel{
-                width: 50px; 
-                height: 50px; 
-                border-radius: 50%;
-            }
-        </style>
-    </head>
+    <%= javascript_pack_tag "Home" %>
+    <script>
+        setColors([<% @serie.secuencia.each do |frame| %>["<%= @colores[frame[0]] %>","<%= @colores[frame[1]] %>","<%= @colores[frame[2]] %>","<%= @colores[frame[3]] %>" ],<% end %>])
 
-    <body>
-    <h1> Estado Actual</h1>
-    <h2>Secuencia:  </h2><h3><%= @serie.titulo %></h3>
-    <div id='serie'>
-        <div id="pixel" class='frame'>
-            <button type="button" class="pixel" disabled>
-            <button type="button" class="pixel" disabled>
-            <button type="button" class="pixel" disabled>
-            <button type="button" class="pixel" disabled>
+        $(document).ready(function(){ setInterval(Animate,250)  })
+    </script>
+    
+    <div class="title">
+        <div class="col-20">Estado Actual</div>
+        <div class="col-20"> Secuencia:</div>
+        <div class="col-20 status-info"><%= @serie.titulo %></div>
+        <div class="col-20">Alerta:</div>
+        <div class="col-20 status-info"><%= @status %></div>
+    </div>
+    <div class="panels">
+        <div class="panel_1">
+            <div id="buttons">
+                <a class="my_button alert" value="" href=<%= alert_path %>>Alert</a>
+                <% @data["alerts"].each do |dat| %>
+                    <a class="my_button" value="" href=<%= serie_path(dat.id) %>><%= dat.titulo %></a>
+                <% end %>
+            </div>
+            <div id="colors" style="display:none">
+                <% @colores.each do |color| %>
+                    <button class="colors" style="background-color: <%= color %>" onclick="PixelColor('<%= color %>')">
+                <% end %>
+            </div>
+        </div>
+        <div class="panel_2">
+            <div id="ArrowDraw">
+                <div class="Arrow_1">
+                    <div class="ArrowTop"></div>
+                    <div class="ArrowMiddle">    
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P1"></div>
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P2"></div>
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P3"></div>
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P4"></div>
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P5"></div>
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P6"></div>
+                    </div>
+                    <div class="ArrowBottom"></div>
+                </div>
+                <div class="Arrow_2">
+                    <div class="ArrowTop"></div>
+                    <div class="ArrowMiddle">
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P7"></div>
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P8"></div>
+                    </div>
+                    <div class="ArrowBottom"></div>
+                </div>
+                <div class="Arrow_3">
+                    <div class="ArrowTop"></div>
+                    <div class="ArrowMiddle">
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P9"></div>
+                    </div>
+                    <div class="ArrowBottom"></div>
+                </div>
+                <div class="Arrow_4">
+                    <div class="ArrowTop"></div>
+                    <div class="ArrowMiddle">
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P10"></div>
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P11"></div>
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P12"></div>
+                    </div>
+                    <div class="ArrowBottom"></div>
+                </div>
+                <div class="Arrow_5">
+                    <div class="ArrowTop"></div>
+                    <div class="ArrowMiddle">
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P13"></div>
+                        <div class="PixelLight <% if @status == "Encendido" %> On <% end %>" Id="P14"></div>
+                    </div>
+                    <div class="ArrowBottom"></div>
+                </div>
+            </div>
+            <div id='serie'>
+                <div id="pixel" class='frame'>
+                    <button type="button" class="pixel" disabled id="Pixel_1" onclick="Pixel(1)">
+                    <button type="button" class="pixel" disabled id="Pixel_2" onclick="Pixel(2)">
+                    <button type="button" class="pixel" disabled id="Pixel_3" onclick="Pixel(3)">
+                    <button type="button" class="pixel" disabled id="Pixel_4" onclick="Pixel(4)">
+                </div>
+            </div>
+        </div>
+        <div class="panel_3">
+            <div id="NewSerie">
+                <%= form_with(url: "/Create/Serie", model: @alert, :id => "SerieForm") do |form| %>
+                    <div class="row">
+                        <div class="col-25">    <%= form.label(:titulo, "Titulo") %>   </div>
+                        <div class="col-75">    <%= form.text_field(:titulo, :required => true) %>  </div>
+                    </div>
+                    <div id="frames">
+                        <div id="frame">
+                            <div class="pixel" style='border-color: #000000; border: groove; background-color: #000000 ' onclick='ShowMenu(this)'>
+                                <%= hidden_field_tag("pixel_1[]", "#000000") %>
+                            </div>
+                            <div class="pixel" style='border-color: #000000; border: groove; background-color: #000000 ' onclick='ShowMenu(this)'>
+                                <%= hidden_field_tag("pixel_2[]", "#000000") %>
+                            </div>
+                            <div class="pixel" style='border-color: #000000; border: groove; background-color: #000000 ' onclick='ShowMenu(this)'>
+                                <%= hidden_field_tag("pixel_3[]", "#000000") %>
+                            </div>
+                            <div class="pixel" style='border-color: #000000; border: groove; background-color: #000000 ' onclick='ShowMenu(this)'>
+                                <%= hidden_field_tag("pixel_4[]", "#000000") %>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="Add_frame" class="last">
+                        <div onclick="addFrame()" class="my_button">Add Frame</div>
+                        <%= form.submit("Create", id: "Bottom", class: "my_button push_button") %>
+                    </div>
+                <% end %>
+            </div>
+            <div id="NewEvent" >
+                <%= form_with(url: "/Create/Event", model: @event, :id => "EventForm") do |form| %>
+                <div class="row">
+                    <div class="col-25">    <%= form.label(:titulo, "Titulo") %>   </div>
+                    <div class="col-75">    <%= form.text_field(:titulo, :required => true) %>  </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">    <%= form.label(:cuerpo, "Descripcion") %>    </div>
+                    <div class="col-75">    <%= form.text_field(:cuerpo, :required => true) %>   </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">    <%= form.label(:fecha, "Fecha") %>    </div>
+                    <div class="col-25">    <%= form.date_field(:fecha, min: EventsController.today, class: "input_time") %>    </div>
+                    <div class="col-25">    <%= form.label(:hora, "Hora") %>    </div>
+                    <div class="col-25">    <%= form.time_field(:hora, class: "input_time") %>    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">    <%= form.label(:alerta, "Alerta") %>    </div>
+                    <div class="col-25">    <%= form.collection_select :alerta, @data["alerts"], :id, :titulo %>    </div>
+                    <div class="col-25">    <%= form.label(:repeticion, "Repeticion: ") %>    </div>
+                    <div class="col-25">    
+                        <select name="repeticion" id="repeticion">
+                            <option value="0">Nunca</option>
+                            <option value="1">Diario</option>
+                            <option value="2">Cada 2 dias</option>
+                            <option value="3">Dias Habiles</option>
+                            <option value="4">Semanal</option>
+                            <option value="5">Bisemanal</option>
+                            <option value="6">Mensual</option>
+                            <option value="7">Bisemanal</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">    <%= form.label("Usuarios a notificar") %>    </div>
+                    <div class="col-25">    
+                        <%= form.radio_button(:notificar, "Nadie", class: "radio_option") %>    
+                        <%= form.label(:notificar_nadie, "Ningun Usuario", class: "label_option") %>
+                    </div>
+                    <div class="col-25">    
+                        <%= form.radio_button(:notificar, "Todos", class: "radio_option") %>    
+                        <%= form.label(:notificar_todos, "Todos los Usuarios", class: "label_option") %>
+                    </div>
+                    <div class="col-25">    
+                        <%= form.radio_button(:notificar, "Espec", class: "radio_option select_user", onchange: "show_users()") %>
+                        <%= form.label(:notificar_espec, "Seleccionar Usuarios", class: "label_option") %>
+                    </div>
+                </div>
+                <div class="row" id="usersRow">
+                    <% User.all.each do |user| %>
+                    <div class="col-25"> 
+                        <%= form.check_box(:users, { :multiple => true, class: "checkbox_option" }, user.id, nil) %> 
+                        <%= form.label("users_" + user.id.to_s, user.first_name + " " + user.last_name, class: "label_option") %>
+                    </div>
+                    <% end %>
+                </div>
+                <div class="row last">
+                    <%= form.submit("Create", id: "Bottom", class: "my_button push_button") %>
+                </div>
+                <% end %>
+            </div>
+            <div id="Dashboard" >
+            <% @data["updates"].each do |update| %>
+                <div class="update">
+                    <div class="icon <%= update.clase %>"></div>
+                    <div>
+                        <div class="update_head">
+                            <div class="update_title"> <%= update.titulo %></div>
+                            <div class="update_time"> <%= update.created_at.strftime("%H:%M - %d/%m/%Y") %></div>
+                            </div>
+                        <div class="update_body"><%= update.cuerpo %></div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
         </div>
     </div>
-
-    <h2>Alerta:     </h2><h3><%= @status %></h3>
-        <a class="my_button" value="" href=<%= alert_path %>>Alert</a>
-    <% @data.each do |dat| %>
-        <a class="my_button" value="" href=<%= serie_path(dat.id) %>><%= dat.titulo %></a>
-    <% end %>
-    </body>
-
-</html>
+    <div class="options">
+        <button type="button" class="my_button push_button" id="toggle" onclick="CustomColors()" value="Custom Colors">Custom Colors</button>
+        <button type="button" class="my_button push_button" id="newSerieButton" onclick="NewSerie()" value="Nueva Serie">New Serie</button>
+        <button type="button" class="my_button push_button" id="newEventButton" onclick="NewEvent()" value="Nuevo Evento">New Event</button>
+    </div>

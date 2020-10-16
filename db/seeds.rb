@@ -32,9 +32,21 @@
 #     ['blue','black','red','black'],
 #     ['black','red','black','yellow']
 #   ])
-Alert.create!(titulo: 'Basico', secuencia: [[ 10, 15,  2, 25],[ 25, 10, 15,  2],[  2, 25, 10, 15],[ 15,  2, 25, 10]])
-Alert.create!(titulo: 'Rojo', secuencia: [[ 10, 10, 10, 10]])
-Alert.create!(titulo: 'Azul', secuencia:  [[  2,  2,  2,  2]])
-Alert.create!(titulo: 'Blanco', secuencia:  [[ 15, 15, 15, 15]])
-Alert.create!(titulo: 'Verde', secuencia:  [[ 25, 25, 25, 25]])
-Alert.create!(titulo: 'Friends', secuencia:  [[ 10,  0, 17,  0],[  0, 17,  0,  2],[ 17,  0,  2,  0],[  0,  2,  0, 10],[  2,  0, 10,  0],[  0, 10,  0, 17]])
+Alert.create!(titulo: "Basico", secuencia: [[10, 15, 2, 25], [25, 10, 15, 2], [2, 25, 10, 15], [15, 2, 25, 10]])
+Alert.create!(titulo: "Rojo", secuencia: [[10, 10, 10, 10]])
+Alert.create!(titulo: "Azul", secuencia: [[2, 2, 2, 2]])
+Alert.create!(titulo: "Blanco", secuencia: [[15, 15, 15, 15]])
+Alert.create!(titulo: "Verde", secuencia: [[25, 25, 25, 25]])
+Alert.create!(titulo: "Friends", secuencia: [[10, 0, 17, 0], [0, 17, 0, 2], [17, 0, 2, 0], [0, 2, 0, 10], [2, 0, 10, 0], [0, 10, 0, 17]])
+
+Event.create!(titulo: "Friends", cuerpo: "Ya va siendo hora de ver friends", estado: true, fecha: Time.now.to_date, hora: "22:20", repeticion: "1", alert_id: Alert.where(titulo: "Friends")[0].id, users_id: [-1])
+Event.create!(titulo: "Plantas", cuerpo: "Te toca regar las plantas", estado: true, fecha: Time.now.to_date + 1.day, hora: "10:00", repeticion: "2", alert_id: Alert.where(titulo: "Azul")[0].id, users_id: [-1])
+
+# Update.create!(titulo: "Via Web", cuerpo: "La alarma se ha Encendido", clase: "web")
+# Update.create!(titulo: "Via Telegram", cuerpo: "Juan Encendio la alarma", clase: "telegram")
+# Update.create!(titulo: "Evento Friends activado", cuerpo: "Ya va siendo hora de ver friends", clase: "evento")
+# Update.create!(titulo: "Via Web", cuerpo: "La alarma se ha Apagado", clase: "web")
+# Update.create!(titulo: "Via Telegram", cuerpo: "Juan activo la serie Friends", clase: "telegram")
+# Update.create!(titulo: "Via Web", cuerpo: "Se activo la serie Friends", clase: "web")
+# Update.create!(titulo: "Via Telegram", cuerpo: "Juan Apago la alarma", clase: "telegram")
+# User.create!(chat_id: , username:, first_name:, last_name:, token:)

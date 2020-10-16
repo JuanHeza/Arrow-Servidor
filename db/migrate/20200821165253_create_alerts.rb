@@ -2,7 +2,7 @@ class CreateAlerts < ActiveRecord::Migration[6.0]
   def change
     create_table :alerts do |t|
       t.string :titulo
-      t.string :secuencia, array: true#, default: [
+      t.integer :secuencia, array: true#, default: [
       #   ['red','white','blue','green'],
       #   ['green','red','white','blue'],
       #   ['blue','green','red','white'],

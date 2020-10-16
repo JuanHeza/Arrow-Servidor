@@ -2,12 +2,13 @@ class CreateEvents < ActiveRecord::Migration[6.0]
   def change
     create_table :events do |t|
       t.string :titulo
-      t.string :cuerpo
-      t.string :estado
+      t.text :cuerpo
+      t.boolean :estado
       t.string :fecha
       t.string :hora
       t.string :repeticion
       t.references :alert, null: false, foreign_key: true
+      t.bigint :user, array: true
 
       t.timestamps
     end

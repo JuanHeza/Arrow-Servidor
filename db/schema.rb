@@ -10,29 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_183442) do
+ActiveRecord::Schema.define(version: 2020_10_14_182851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "alerts", force: :cascade do |t|
     t.string "titulo"
-    t.string "secuencia", array: true
+    t.integer "secuencia", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "events", force: :cascade do |t|
     t.string "titulo"
-    t.string "cuerpo"
-    t.string "estado"
+    t.text "cuerpo"
+    t.boolean "estado"
     t.string "fecha"
     t.string "hora"
     t.string "repeticion"
     t.bigint "alert_id", null: false
+    t.bigint "users_id", array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["alert_id"], name: "index_events_on_alert_id"
+  end
+
+  create_table "updates", force: :cascade do |t|
+    t.string "titulo"
+    t.string "cuerpo"
+    t.string "clase"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.bigint "chat_id"
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "events", "alerts"

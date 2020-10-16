@@ -1,0 +1,34 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+#ArrowDraw{
+    background-image: url(asset_path("Wood-Grain-Texture-11.png"));
+    background-position: center;
+    background-blend-mode: soft-light;
+    background-size: cover;
+}
+
+.web{
+    background-color: #228b22;
+    background-image: url(asset_path("web.png"));
+    background-position: center;
+    background-repeat: no-repeat;
+    //Iconos diseñados por Vitaly Gorbachev - https://www.flaticon.es/autores/vitaly-gorbachev 
+}
+
+.telegram{
+    background-color: #1e90ff;
+    background-image: url(asset_path("telegram.png"));
+    background-position: center;
+    background-repeat: no-repeat;
+    //Iconos diseñados por Freepik - https://www.flaticon.es/autores/freepik
+}
+
+.evento{
+    background-color: #dc143c;
+    background-image: url(asset_path("evento.png"));
+    background-position: center;
+    background-repeat: no-repeat;
+    //Iconos diseñados por Dimitry Miroliubov - https://www.flaticon.es/autores/dimitry-miroliubov
+}
