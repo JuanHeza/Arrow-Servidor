@@ -28,7 +28,7 @@ class TelegramBotsController < ApplicationController
       pp Update.create(
         titulo: "Via Telegram",
         cuerpo: "#{message.from.first_name} activo la serie #{serie}.",
-        clase: "telegram"
+        clase: "telegram",
       )
       AlertsController.saveActual
       bot.send_message(chat_id: message.from.id, text: "Serie #{serie} iniciada")
@@ -79,7 +79,7 @@ class TelegramBotsController < ApplicationController
           pp Update.create(
             titulo: "Via Telegram",
             cuerpo: "El usuario: #{message.from.first_name} #{alarma} la alarma.",
-            clase: "telegram"
+            clase: "telegram",
           )
           AlertsController.saveActual
           bot.send_message(chat_id: message.from.id, text: "La alarma se #{alarma}")
@@ -137,11 +137,12 @@ class TelegramBotsController < ApplicationController
           ["Diario", "2 dias", "Habiles", "Semanal", "Bisemanal", "Mensual", "Bimensual"].each do |repet|
             text.concat("\n", repet)
           end
-          text.concat("\n\n\t**Usuarios**:")
+          text.concat("\n\n\t**Usuarios**: \n Todos")
           User.all.each do |user|
             text.concat("\n", user.first_name, "\t", user.last_name)
           end
-          bot.send_message(chat_id: message.chat.id, text: text, reply_markup: kb)
+          text.concat("\n\n **Formato** \n Titulo | Descripcion | 00:00 | 23-08-2222 | Serie | Repeticion | Usuario, usuario")
+          bot.send_message(chat_id: message.chat.id, text: text, reply_markup: kb, parse_mode: "MarkdownV2")
         end
       when "/createEvent"
         if !user_registered
