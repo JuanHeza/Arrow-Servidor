@@ -20,8 +20,8 @@ class EventsController < ApplicationController
         if diference <= 1.0 && @@Alerted_Events[event.titulo] == false && diference > -5.0
           AlertsController.togglealert(true)
           AlertsController.set_serie(event.alert_id)
-          TelegramBotsController.SendMessage("Pronto a suceder: ** #{event.titulo} ** \n #{event.cuerpo}", event.users_id)     
-          pp Update.new(
+          TelegramBotsController.SendMessage("Pronto a suceder: ** #{event.titulo} ** \n #{event.cuerpo}", event.users_id)
+          pp update.create(
             titulo: "Evento #{event.titulo} activado.",
             cuerpo: "#{event.cuerpo}.",
             clase: "evento",
