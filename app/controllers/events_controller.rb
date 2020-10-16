@@ -21,7 +21,7 @@ class EventsController < ApplicationController
           AlertsController.togglealert(true)
           AlertsController.set_serie(event.alert_id)
           TelegramBotsController.SendMessage("Pronto a suceder: ** #{event.titulo} ** \n #{event.cuerpo}", event.users_id)
-          pp update.create(
+          pp Update.create(
             titulo: "Evento #{event.titulo} activado.",
             cuerpo: "#{event.cuerpo}.",
             clase: "evento",

@@ -80,7 +80,7 @@ class AlertsController < ApplicationController
     else
       @status = "Apagado"
     end
-    pp update.create(
+    pp Update.create(
       titulo: "Via Web.",
       cuerpo: "La alarma se ha #{@status}.",
       clase: "web",
@@ -100,7 +100,7 @@ class AlertsController < ApplicationController
   def serieSet
     @@actual = params[:id]
 
-    pp update.create(
+    pp Update.create(
       titulo: "Via Web",
       cuerpo: "Se activo la serie #{Alert.find(@@actual).titulo}.",
       clase: "web",

@@ -25,7 +25,7 @@ class TelegramBotsController < ApplicationController
         end
       end
       AlertsController.set_serie(message.data)
-      pp update.create(
+      pp Update.create(
         titulo: "Via Telegram",
         cuerpo: "#{message.from.first_name} activo la serie #{serie}.",
         clase: "telegram",
@@ -75,7 +75,7 @@ class TelegramBotsController < ApplicationController
           else
             alarma = "Apago"
           end
-          pp update.create(
+          pp Update.create(
             titulo: "Via Telegram",
             cuerpo: "El usuario: #{message.from.first_name} #{alarma} la alarma.",
             clase: "telegram",
