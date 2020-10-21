@@ -33,8 +33,8 @@ class TelegramBotsController < ApplicationController
       AlertsController.saveActual
       bot.send_message(chat_id: message.from.id, text: "Serie #{serie} iniciada")
     when Telegram::Bot::Types::Message
-      puts message.text[message.entities[0].offset..message.entities[0].length]
-      case message.text[message.entities[0].offset..message.entities[0].length] #AQUI VA EL OFFSET <======================================
+      puts message.text[message.entities[0].offset..message.entities[0].length-1]
+      case message.text[message.entities[0].offset..message.entities[0].length-1] #AQUI VA EL OFFSET <======================================
       when "/start"
         list = []
         for i in 0..Comands.size
@@ -138,13 +138,13 @@ class TelegramBotsController < ApplicationController
         if !user_registered
           bot.send_message(chat_id: message.chat.id, text: "Usuario no regristrado, ingrese el comando */start* para poder acceder a estas funciones")
         else
-          kb = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: ["/createEvent", "/cancel"], one_time_keyboard: true)
+          kb = Telegram::Bot::Types::ReplyKeyboardMarkup.new(keyboard: [["/createEvent", "/cancel"]], one_time_keyboard: true)
           text = "*Alertas*:"
           Alert.all.each do |alerta|
             text.concat("\n", alerta.titulo)
           end
           text.concat("\n\n*Repeticion*:")
-          ["Nunca" , "Diario", "2 dias", "Habiles", "Semanal", "Bisemanal", "Mensual", "Bimensual"].each do |repet|
+          ["Nunca", "Diario", "2 dias", "Habiles", "Semanal", "Bisemanal", "Mensual", "Bimensual"].each do |repet|
             text.concat("\n", repet)
           end
           text.concat("\n\n*Usuarios*: \n Todos")
@@ -207,8 +207,14 @@ class TelegramBotsController < ApplicationController
 
   def self.Event(data)
     a = Telegram::Bot::Types::Update.new(data)
-    puts a.message.text[a.message.entities[0].offset..a.message.entities[0].length]
+    command = a.message.text[a.message.entities[0].offset..a.message.entities[0].length-1]
+    pp command
     values = a.message.text[a.message.entities[0].length...a.message.text.length].split("|", -1)
+    if command == "/createEvent" 
+      puts "evento" 
+    else
+       puts "Error"
+    end
     if values.length == 7
       values.collect! do |value|
         value[0] == " " ? value = value[1..value.length].capitalize : value.capitalize
